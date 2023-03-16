@@ -1,9 +1,12 @@
 import { FC } from "react";
-import Button from "../utils/Button";
-import Header from "../utils/Header";
-import SubHeader from "../utils/SubHeader";
-import TwoColumns from "./TwoColumns";
-import NetflixLogo from "../../assets/netflix.jfif";
+import Button from "../../utils/Button";
+import Header from "../../utils/Header";
+import SubHeader from "../../utils/SubHeader";
+import TwoColumns from "../TwoColumns";
+import NetflixLogo from "../../../assets/netflix.jfif";
+import CardHeader from "./Header";
+import CardFooter from "./Footer";
+import CardContent from "./Content";
 
 export type Job = {
   id: string;
@@ -34,12 +37,12 @@ const JobCard: FC<{ job: Job }> = ({ job }) => {
         />
       </div>
       <div className="flex flex-col gap-6">
-        <div className="flex flex-col">
+        <CardHeader>
           <Header>{job.title}</Header>
           <SubHeader>{`${job.company} - ${job.industry}`}</SubHeader>
           <SubHeader>{`${job.location} (${job.remoteType})`}</SubHeader>
-        </div>
-        <div className="flex flex-col gap-2">
+        </CardHeader>
+        <CardContent>
           <SubHeader>{"Part-Time (9.00 am - 5.00 pm IST)"}</SubHeader>
           <SubHeader>
             {job["experience-min"] || job["experience-max"]
@@ -54,8 +57,8 @@ const JobCard: FC<{ job: Job }> = ({ job }) => {
           <SubHeader>
             {job.totalEmployee ? `${job.totalEmployee} employees` : ""}
           </SubHeader>
-        </div>
-        <div>
+        </CardContent>
+        <CardFooter>
           <TwoColumns>
             {job.applyType === "external" ? (
               <Button onClick={() => {}} filled={false}>
@@ -65,7 +68,7 @@ const JobCard: FC<{ job: Job }> = ({ job }) => {
               <Button onClick={() => {}}>Apply Now</Button>
             )}
           </TwoColumns>
-        </div>
+        </CardFooter>
       </div>
     </div>
   );

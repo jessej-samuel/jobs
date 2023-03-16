@@ -1,5 +1,5 @@
 import { FC } from "react";
-import JobCard, { Job } from "./containers/JobCard";
+import JobCard, { Job } from "./containers/Card";
 import Header from "./utils/Header";
 
 type JobListProps = {
