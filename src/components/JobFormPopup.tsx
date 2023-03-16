@@ -4,7 +4,7 @@ import Button from "./utils/Button";
 import Header from "./utils/Header";
 import RadioInput from "./utils/RadioInput";
 import TextField from "./utils/TextField";
-import CardContainer from "./containers/CardContainer";
+import ModalContainer from "./containers/ModalContainer";
 import ModalBackdrop from "./containers/ModalBackdrop";
 import FormHeader from "./containers/FormHeader";
 import FormFooter from "./containers/FormFooter";
@@ -72,7 +72,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
 
   return (
     <ModalBackdrop onClose={onClose}>
-      <CardContainer>
+      <ModalContainer>
         <form onSubmit={handleFormSubmit} ref={formRef}>
           <StepContainer currentStep={currentStep} forStep={1}>
             <FormHeader>
@@ -182,7 +182,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
             </FormFooter>
           </StepContainer>
         </form>
-      </CardContainer>
+      </ModalContainer>
     </ModalBackdrop>
   );
 };
