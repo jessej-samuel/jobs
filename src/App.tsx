@@ -4,18 +4,18 @@ import JobFormPopup from "./components/JobFormPopup";
 import JobList from "./components/JobList";
 
 function App() {
-  const [formOpen, setFormOpen] = useState(false);
+  const [formOpen, setFormOpen] = useState(true);
 
   const openForm = () => {
     setFormOpen(!formOpen);
   };
 
   return (
-    <>
+    <div className="">
       <CreateJobButton onClick={openForm} />
       <JobFormPopup visible={formOpen} />
       <JobList />
-    </>
+    </div>
   );
 }
 

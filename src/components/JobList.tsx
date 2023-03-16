@@ -1,5 +1,5 @@
 const JobList = () => {
-  return <>JobList</>;
+  return <div>JobList</div>;
 };
 
 export default JobList;
