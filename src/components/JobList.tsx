@@ -1,5 +1,6 @@
 import { FC } from "react";
 import JobCard, { Job } from "./containers/JobCard";
+import Header from "./utils/Header";
 
 type JobListProps = {
   jobs: Job[];
@@ -7,11 +8,14 @@ type JobListProps = {
 
 const JobList: FC<JobListProps> = ({ jobs }) => {
   return (
-    <div className="flex gap-6 flex-wrap z-0">
-      {jobs.map((job) => {
-        return <JobCard job={job} />;
-      })}
-    </div>
+    <section className="mt-8">
+      <Header className="mb-4">Available jobs</Header>
+      <div className="flex gap-6 flex-wrap z-0">
+        {jobs.map((job) => {
+          return <JobCard job={job} />;
+        })}
+      </div>
+    </section>
   );
 };
 
