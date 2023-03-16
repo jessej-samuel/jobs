@@ -113,7 +113,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
               />
             </TwoColumns>
             <FormFooter>
-              <Error showError>
+              <Error showError={showError}>
                 Fill all fields marked required * to continue
               </Error>
               <Button
