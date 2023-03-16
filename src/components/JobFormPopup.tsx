@@ -11,6 +11,8 @@ import FormFooter from "./containers/FormFooter";
 import StepCount from "./utils/StepCount";
 import TwoColumns from "./containers/TwoColumns";
 import StepContainer from "./containers/StepContainer";
+import FormManager from "./utils/FormManager";
+import Error from "./utils/Error";
 
 type JobFormPopupProps = {
   visible: boolean;
@@ -73,7 +75,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
   return (
     <ModalBackdrop onClose={onClose}>
       <ModalContainer>
-        <form onSubmit={handleFormSubmit} ref={formRef}>
+        <FormManager onSubmit={handleFormSubmit} ref={formRef}>
           <StepContainer currentStep={currentStep} forStep={1}>
             <FormHeader>
               <Header>Create a job</Header>
@@ -110,12 +112,9 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
               />
             </TwoColumns>
             <FormFooter>
-              <p
-                className="w-fit text-error relative top-8"
-                hidden={!showError}
-              >
+              <Error showError>
                 Fill all fields marked required * to continue
-              </p>
+              </Error>
               <Button
                 onClick={handleStepSubmit}
                 className="self-end float-right"
@@ -181,7 +180,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
               </Button>
             </FormFooter>
           </StepContainer>
-        </form>
+        </FormManager>
       </ModalContainer>
     </ModalBackdrop>
   );

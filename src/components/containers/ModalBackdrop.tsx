@@ -8,7 +8,7 @@ type ModalBackdropProps = {
 const ModalBackdrop: FC<ModalBackdropProps> = ({ children, onClose }) => {
   return (
     <div
-      className="fixed inset-0 bg-white/50 backdrop-blur flex justify-center items-center"
+      className="fixed inset-0 bg-white/50 backdrop-blur flex justify-center items-center z-50"
       onClick={onClose}
     >
       {children}
