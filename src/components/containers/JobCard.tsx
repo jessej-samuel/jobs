@@ -3,7 +3,7 @@ import Button from "../utils/Button";
 import Header from "../utils/Header";
 import SubHeader from "../utils/SubHeader";
 import TwoColumns from "./TwoColumns";
-import NetflixLogo from "../assets/netflix.jfif";
+import NetflixLogo from "../../assets/netflix.jfif";
 
 export type Job = {
   id: string;
