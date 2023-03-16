@@ -43,8 +43,9 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
     e.preventDefault();
     let formData = new FormData(formRef.current);
     const data = Object.fromEntries(formData);
-    postJob(data);
-    resetState();
+
+    // Lol I forgot to wait for the promise to resolve
+    postJob(data).then(resetState);
   };
 
   const handleStepSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
@@ -75,7 +76,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
   return (
     <ModalBackdrop onClose={onClose}>
       <ModalContainer>
-        <FormManager onSubmit={handleFormSubmit} ref={formRef}>
+        <FormManager onSubmit={handleFormSubmit} formRef={formRef}>
           <StepContainer currentStep={currentStep} forStep={1}>
             <FormHeader>
               <Header>Create a job</Header>

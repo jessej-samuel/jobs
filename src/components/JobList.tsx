@@ -6,11 +6,7 @@ import SubHeader from "./utils/SubHeader";
 import TwoColumns from "./containers/TwoColumns";
 import Button from "./utils/Button";
 
-type JobListProps = {
-  dependency: any;
-};
-
-type Job = {
+export type Job = {
   id: string;
   title: string;
   company: string;
@@ -24,19 +20,11 @@ type Job = {
   totalEmployee: string;
   applyType: "quick" | "external";
 };
+type JobListProps = {
+  jobs: Job[];
+};
 
-const JobList: FC<JobListProps> = ({ dependency }) => {
-  const [jobs, setJobs]: [Job[], any] = useState([]);
-
-  // Fetch jobs from API
-  useEffect(() => {
-    let data: Job[] = [];
-    jobsApi.get("/jobs").then((res) => {
-      data = res.data;
-      setJobs(data);
-    });
-  }, [dependency]);
-
+const JobList: FC<JobListProps> = ({ jobs }) => {
   return (
     <div className="flex gap-6 flex-wrap z-0">
       {jobs.map((job) => {
@@ -61,12 +49,18 @@ const JobList: FC<JobListProps> = ({ dependency }) => {
               <div className="flex flex-col gap-2">
                 <SubHeader>{"Part-Time (9.00 am - 5.00 pm IST)"}</SubHeader>
                 <SubHeader>
-                  {`Experience: (${job["experience-min"]} - ${job["experience-max"]} years)`}
+                  {job["experience-min"] || job["experience-max"]
+                    ? `Experience: (${job["experience-min"]} - ${job["experience-max"]} years)`
+                    : ""}
                 </SubHeader>
                 <SubHeader>
-                  {`INR ($) ${job["salary-min"]} - ${job["salary-max"]} / Month`}
+                  {job["salary-min"] || job["salary-max"]
+                    ? `INR ($) ${job["salary-min"]} - ${job["salary-max"]} / Month`
+                    : ``}
                 </SubHeader>
-                <SubHeader>{`${job.totalEmployee} employees`}</SubHeader>
+                <SubHeader>
+                  {job.totalEmployee ? `${job.totalEmployee} employees` : ""}
+                </SubHeader>
               </div>
               <div>
                 <TwoColumns>
