@@ -10,12 +10,15 @@ type JobFormPopupProps = {
 };
 
 const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
+
+  // Hooks initialization
   const formRef: MutableRefObject<HTMLFormElement> = useRef(
     document.createElement("form")
   );
   const [currentStep, setCurrentStep] = useState(1);
   const [showError, setShowError] = useState(false);
 
+  // Event handlers
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(e);
@@ -48,6 +51,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
     }
   };
 
+  // Render
   if (!visible) return null; // don't render if modal is not open
 
   return (
