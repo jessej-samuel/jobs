@@ -9,7 +9,7 @@ type ButtonProps = {
 const Button: FC<ButtonProps> = ({ onClick, className, children }) => {
   return (
     <button
-      className={`bg-blue-500 px-2 py-1 rounded text-white ${
+      className={`bg-primary w-fit px-4 py-2 rounded-md text-white flex items-center justify-center shadow-sm text-base font-medium z-10 ${
         className ? className : ""
       }`}
       type="button"

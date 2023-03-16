@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="">
       <CreateJobButton onClick={openForm} />
-      <JobFormPopup visible={formOpen} />
+      <JobFormPopup onClose={() => setFormOpen(false)} visible={formOpen} />
       <JobList />
     </div>
   );
