@@ -1,9 +1,16 @@
 import { FC, MutableRefObject, useRef, useState } from "react";
+import jobsApi from "../api/PostJob";
 import Button from "./utils/Button";
-import TextField from "./utils/TextField";
 import Header from "./utils/Header";
 import RadioInput from "./utils/RadioInput";
-import jobsApi from "../api/PostJob";
+import TextField from "./utils/TextField";
+import CardContainer from "./containers/CardContainer";
+import ModalBackdrop from "./containers/ModalBackdrop";
+import FormHeader from "./containers/FormHeader";
+import FormFooter from "./containers/FormFooter";
+import StepCount from "./utils/StepCount";
+import TwoColumns from "./containers/TwoColumns";
+import StepContainer from "./containers/StepContainer";
 
 type JobFormPopupProps = {
   visible: boolean;
@@ -64,25 +71,14 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
   if (!visible) return null; // don't render if modal is not open
 
   return (
-    <div
-      className="fixed inset-0 bg-white/50 backdrop-blur flex justify-center items-center"
-      onClick={onClose}
-    >
-      <div
-        className="w-full max-w-xl p-8 bg-card border border-border rounded"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <ModalBackdrop onClose={onClose}>
+      <CardContainer>
         <form onSubmit={handleFormSubmit} ref={formRef}>
-          {/* Step 1 - will be hidden when step 2 comes */}
-          <div
-            className={`flex flex-col gap-6 ${
-              currentStep === 1 ? "" : "hidden"
-            }`}
-          >
-            <div className="flex flex-row justify-between items-center">
+          <StepContainer currentStep={currentStep} forStep={1}>
+            <FormHeader>
               <Header>Create a job</Header>
-              <div className="font-medium text-base">Step 1</div>
-            </div>
+              <StepCount count={1} />
+            </FormHeader>
             <TextField
               label="Job title"
               name="title"
@@ -101,7 +97,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
               placeholder="ex. Technology"
               required
             />
-            <div className="grid grid-cols-2 gap-4">
+            <TwoColumns>
               <TextField
                 label="Location"
                 name="location"
@@ -112,8 +108,8 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
                 name="remoteType"
                 placeholder="ex. In-office"
               />
-            </div>
-            <div className="mt-24">
+            </TwoColumns>
+            <FormFooter>
               <p
                 className="w-fit text-error relative top-8"
                 hidden={!showError}
@@ -126,19 +122,14 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
               >
                 Next
               </Button>
-            </div>
-          </div>
-          {/* Step 2 - will be hidden when step 1 comes */}
-          <div
-            className={`flex flex-col gap-6 ${
-              currentStep === 2 ? "" : "hidden"
-            }`}
-          >
-            <div className="flex flex-row justify-between items-center">
+            </FormFooter>
+          </StepContainer>
+          <StepContainer currentStep={currentStep} forStep={2}>
+            <FormHeader>
               <Header>Create a job</Header>
-              <div className="font-medium text-base">Step 2</div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
+              <StepCount count={2} />
+            </FormHeader>
+            <TwoColumns>
               <TextField
                 label="Experience"
                 name="experience-min"
@@ -150,8 +141,8 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
                 type="number"
                 placeholder="Maximum"
               />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
+            </TwoColumns>
+            <TwoColumns>
               <TextField
                 label="Salary"
                 name="salary-min"
@@ -163,7 +154,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
                 type="number"
                 placeholder="Maximum"
               />
-            </div>
+            </TwoColumns>
             <TextField
               label="Total employee"
               name="totalEmployee"
@@ -184,15 +175,15 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
                 },
               ]}
             />
-            <div className="mt-24">
+            <FormFooter>
               <Button onClick={handleStepSubmit} className="float-right">
                 Save
               </Button>
-            </div>
-          </div>
+            </FormFooter>
+          </StepContainer>
         </form>
-      </div>
-    </div>
+      </CardContainer>
+    </ModalBackdrop>
   );
 };
 
