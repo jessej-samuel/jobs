@@ -6,6 +6,7 @@ type TextFieldProps = {
   placeholder?: string;
   required?: boolean;
   className?: string;
+  type?: "text" | "email" | "password" | "number";
 };
 
 const TextField: FC<TextFieldProps> = ({
@@ -14,6 +15,7 @@ const TextField: FC<TextFieldProps> = ({
   placeholder = "",
   required = false,
   className = "",
+  type = "text",
 }) => {
   return (
     <div className={"flex flex-col gap-1 " + className}>
@@ -25,7 +27,7 @@ const TextField: FC<TextFieldProps> = ({
         {required ? <span className="text-error">*</span> : null}
       </label>
       <input
-        type="text"
+        type={type}
         name={name}
         id={name}
         className="border border-border px-3 py-2 placeholder-placeholder rounded-[5px] focus:outline-primary"

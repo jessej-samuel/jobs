@@ -3,6 +3,7 @@ import Button from "./utils/Button";
 import TextField from "./utils/TextField";
 import Header from "./utils/Header";
 import RadioInput from "./utils/RadioInput";
+import jobsApi from "../api/PostJob";
 
 type JobFormPopupProps = {
   visible: boolean;
@@ -10,7 +11,6 @@ type JobFormPopupProps = {
 };
 
 const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
-
   // Hooks initialization
   const formRef: MutableRefObject<HTMLFormElement> = useRef(
     document.createElement("form")
@@ -18,10 +18,24 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [showError, setShowError] = useState(false);
 
+  // Helper functions
+  const postJob = async (data: any) => {
+    await jobsApi.post("/jobs", data);
+  };
+
+  const resetState = () => {
+    setCurrentStep(1);
+    setShowError(false);
+    onClose();
+  };
+
   // Event handlers
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
+    let formData = new FormData(formRef.current);
+    const data = Object.fromEntries(formData);
+    postJob(data);
+    resetState();
   };
 
   const handleStepSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
@@ -42,12 +56,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
 
     if (currentStep === 1) setCurrentStep(2);
     else {
-      let formData = new FormData(formRef.current);
-      const data = Object.fromEntries(formData);
-      console.log(data);
-      setCurrentStep(1);
-      setShowError(false);
-      onClose();
+      handleFormSubmit(e as any);
     }
   };
 
@@ -134,20 +143,31 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
                 label="Experience"
                 name="experience-min"
                 placeholder="Minimum"
+                type="number"
               />
-              <TextField name="experience-max" placeholder="Maximum" />
+              <TextField
+                name="experience-max"
+                type="number"
+                placeholder="Maximum"
+              />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <TextField
                 label="Salary"
                 name="salary-min"
                 placeholder="Minimum"
+                type="number"
               />
-              <TextField name="salary-max" placeholder="Maximum" />
+              <TextField
+                name="salary-max"
+                type="number"
+                placeholder="Maximum"
+              />
             </div>
             <TextField
               label="Total employee"
               name="totalEmployee"
+              type="number"
               placeholder="ex. 100"
             />
             <RadioInput
