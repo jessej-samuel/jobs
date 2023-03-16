@@ -2,7 +2,7 @@ import { FC } from "react";
 
 type TextFieldProps = {
   name: string;
-  label: string;
+  label?: string;
   placeholder?: string;
   required?: boolean;
   className?: string;
@@ -10,14 +10,17 @@ type TextFieldProps = {
 
 const TextField: FC<TextFieldProps> = ({
   name,
-  label,
-  placeholder,
+  label = "",
+  placeholder = "",
   required = false,
   className = "",
 }) => {
   return (
     <div className={"flex flex-col gap-1 " + className}>
-      <label htmlFor={name} className="text-dark text-sm font-medium">
+      <label
+        htmlFor={name}
+        className="text-dark text-sm font-medium min-h-[20px]"
+      >
         {label}
         {required ? <span className="text-error">*</span> : null}
       </label>

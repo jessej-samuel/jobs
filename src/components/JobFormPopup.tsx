@@ -2,6 +2,7 @@ import { FC, MutableRefObject, useRef, useState } from "react";
 import Button from "./utils/Button";
 import TextField from "./utils/TextField";
 import Header from "./utils/Header";
+import RadioInput from "./utils/RadioInput";
 
 type JobFormPopupProps = {
   visible: boolean;
@@ -39,16 +40,15 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
     if (currentStep === 1) setCurrentStep(2);
     else {
       let formData = new FormData(formRef.current);
-      formData.forEach((value, key) => {
-        console.log(key, value);
-      });
+      const data = Object.fromEntries(formData);
+      console.log(data);
       setCurrentStep(1);
       setShowError(false);
       onClose();
     }
   };
 
-  if (!visible) return null;
+  if (!visible) return null; // don't render if modal is not open
 
   return (
     <div
@@ -116,20 +116,54 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
             </div>
           </div>
           {/* Step 2 - will be hidden when step 1 comes */}
-          <div className={currentStep === 2 ? "" : "hidden"}>
-            <h1>Form</h1>
-            <div className="flex flex-col mb-6">
-              <label htmlFor="title">Title</label>
-              <input type="text" name="title" id="title" className="border" />
+          <div
+            className={`flex flex-col gap-6 ${
+              currentStep === 2 ? "" : "hidden"
+            }`}
+          >
+            <div className="flex flex-row justify-between items-center">
+              <Header>Create a job</Header>
+              <div className="font-medium text-base">Step 2</div>
             </div>
-            <div className="flex flex-col mb-6">
-              <label htmlFor="description">Description</label>
-              <textarea
-                name="description"
-                id="description"
-                className="border"
+            <div className="grid grid-cols-2 gap-4">
+              <TextField
+                label="Experience"
+                name="experience-min"
+                placeholder="Minimum"
               />
-              <Button onClick={handleStepSubmit}>Save</Button>
+              <TextField name="experience-max" placeholder="Maximum" />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <TextField
+                label="Salary"
+                name="salary-min"
+                placeholder="Minimum"
+              />
+              <TextField name="salary-max" placeholder="Maximum" />
+            </div>
+            <TextField
+              label="Total employee"
+              name="totalEmployee"
+              placeholder="ex. 100"
+            />
+            <RadioInput
+              title="Apply type"
+              name="applyType"
+              items={[
+                {
+                  value: "quick",
+                  label: "Quick apply",
+                },
+                {
+                  value: "external",
+                  label: "External link",
+                },
+              ]}
+            />
+            <div className="mt-24">
+              <Button onClick={handleStepSubmit} className="float-right">
+                Save
+              </Button>
             </div>
           </div>
         </form>
