@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Button from "./utils/Button";
+import Button from "./views/utils/Button";
 
 type CreateJobButtonProps = {
   onClick: () => void;

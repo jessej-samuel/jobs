@@ -1,6 +1,6 @@
 import { FC } from "react";
-import JobCard, { Job } from "./containers/Card";
-import Header from "./utils/Header";
+import JobCard, { Job } from "./views/Card";
+import Header from "./views/utils/Header";
 
 type JobListProps = {
   jobs: Job[];

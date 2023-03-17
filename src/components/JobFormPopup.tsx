@@ -1,18 +1,18 @@
 import { FC, MutableRefObject, useRef, useState } from "react";
 import jobsApi from "../api/PostJob";
-import Button from "./utils/Button";
-import Header from "./utils/Header";
-import RadioInput from "./utils/RadioInput";
-import TextField from "./utils/TextField";
-import ModalContainer from "./containers/ModalContainer";
-import ModalBackdrop from "./containers/ModalBackdrop";
-import FormHeader from "./containers/FormHeader";
-import FormFooter from "./containers/FormFooter";
-import StepCount from "./utils/StepCount";
-import TwoColumns from "./containers/TwoColumns";
-import StepContainer from "./containers/StepContainer";
-import FormManager from "./utils/FormManager";
-import Error from "./utils/Error";
+import Button from "./views/utils/Button";
+import Header from "./views/utils/Header";
+import RadioInput from "./views/Form/RadioInput";
+import TextField from "./views/Form/TextField";
+import ModalContainer from "./views/Modal/ModalContainer";
+import ModalBackdrop from "./views/Modal/ModalBackdrop";
+import FormHeader from "./views/Form/FormHeader";
+import FormFooter from "./views/Form/FormFooter";
+import StepCount from "./views/utils/StepCount";
+import TwoColumns from "./views/utils/TwoColumns";
+import StepContainer from "./views/utils/StepContainer";
+import FormManager from "./views/Form/FormManager";
+import Error from "./views/Form/Error";
 
 type JobFormPopupProps = {
   visible: boolean;

@@ -3,7 +3,7 @@ import CreateJobButton from "./components/CreateJobButton";
 import JobFormPopup from "./components/JobFormPopup";
 import JobList from "./components/JobList";
 import jobsApi from "./api/PostJob";
-import { Job } from "./components/containers/Card";
+import { Job } from "./components/views/Card";
 
 function App() {
   const [formOpen, setFormOpen] = useState(false);

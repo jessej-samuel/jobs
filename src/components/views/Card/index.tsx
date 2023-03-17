@@ -1,8 +1,8 @@
 import { FC } from "react";
-import Button from "../../utils/Button";
-import Header from "../../utils/Header";
-import SubHeader from "../../utils/SubHeader";
-import TwoColumns from "../TwoColumns";
+import Button from "../utils/Button";
+import Header from "../utils/Header";
+import SubHeader from "../utils/SubHeader";
+import TwoColumns from "../utils/TwoColumns";
 import NetflixLogo from "../../../assets/netflix.jfif";
 import CardHeader from "./Header";
 import CardFooter from "./Footer";
@@ -26,7 +26,7 @@ export type Job = {
 const JobCard: FC<{ job: Job }> = ({ job }) => {
   return (
     <div
-      className="w-[830px] h-80 px-6 py-4 flex flex-row gap-2 bg-card border border-border rounded-[10px] m-0"
+      className="w-[830px] min-h-[20rem] px-6 py-4 flex flex-row gap-2 bg-card border border-border rounded-[10px] m-0"
       key={job.id}
     >
       <div>
@@ -61,7 +61,7 @@ const JobCard: FC<{ job: Job }> = ({ job }) => {
         <CardFooter>
           <TwoColumns>
             {job.applyType === "external" ? (
-              <Button onClick={() => {}} filled={false}>
+              <Button onClick={() => {}} className="min-w-" filled={false}>
                 External Apply
               </Button>
             ) : (

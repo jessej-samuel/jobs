@@ -16,7 +16,7 @@ const Button: FC<ButtonProps> = ({
   if (filled)
     return (
       <button
-        className={`bg-primary w-fit px-4 py-2 rounded-md text-white flex items-center justify-center shadow-sm text-base font-medium z-10 ${
+        className={`bg-primary min-w-max w-fit px-4 py-2 rounded-md text-white flex items-center justify-center shadow-sm text-base font-medium z-10 ${
           className ? className : ""
         }`}
         type="button"
