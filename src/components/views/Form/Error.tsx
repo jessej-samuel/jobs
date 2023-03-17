@@ -7,7 +7,7 @@ type ErrorProps = {
 
 const Error: FC<ErrorProps> = ({ showError, children }) => {
   return (
-    <p className="w-fit text-error relative top-8" hidden={!showError}>
+    <p className="w-fit text-error relative" hidden={!showError}>
       {children}
     </p>
   );

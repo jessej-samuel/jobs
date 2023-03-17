@@ -99,14 +99,14 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
             <TextField
               label="Industry"
               name="industry"
-              placeholder="ex. Technology"
+              placeholder="ex. Information Technology"
               required
             />
             <TwoColumns>
               <TextField
                 label="Location"
                 name="location"
-                placeholder="ex. New York"
+                placeholder="ex. Chennai"
               />
               <TextField
                 label="Remote type"
@@ -169,7 +169,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
                 },
                 {
                   value: "external",
-                  label: "External link",
+                  label: "External apply",
                 },
               ]}
             />
