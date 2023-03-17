@@ -6,7 +6,7 @@ type TextFieldProps = {
   placeholder?: string;
   required?: boolean;
   className?: string;
-  type?: "text" | "email" | "password" | "number";
+  type?: "text" | "email" | "password" | "number" | "currency";
 };
 
 const TextField: FC<TextFieldProps> = ({

@@ -40,7 +40,7 @@ const JobCard: FC<{ job: Job }> = ({ job }) => {
         <CardHeader>
           <Header>{job.title}</Header>
           <SubHeader>{`${job.company} - ${job.industry}`}</SubHeader>
-          <SubHeader>{`${job.location} (${job.remoteType})`}</SubHeader>
+          <SubHeader className="text-[#646464]">{`${job.location} (${job.remoteType})`}</SubHeader>
         </CardHeader>
         <CardContent>
           <SubHeader>{"Part-Time (9.00 am - 5.00 pm IST)"}</SubHeader>
@@ -51,7 +51,7 @@ const JobCard: FC<{ job: Job }> = ({ job }) => {
           </SubHeader>
           <SubHeader>
             {job["salary-min"] || job["salary-max"]
-              ? `INR ($) ${job["salary-min"]} - ${job["salary-max"]} / Month`
+              ? `INR (₹) ${job["salary-min"]} - ${job["salary-max"]} / Month`
               : ``}
           </SubHeader>
           <SubHeader>

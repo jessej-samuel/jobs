@@ -26,6 +26,7 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
   );
   const [currentStep, setCurrentStep] = useState(1);
   const [showError, setShowError] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   // Helper functions
   const postJob = async (data: any) => {
@@ -35,15 +36,16 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
   const resetState = () => {
     setCurrentStep(1);
     setShowError(false);
+    setDisabled(false);
     onClose();
   };
 
   // Event handlers
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setDisabled(true);
     let formData = new FormData(formRef.current);
     const data = Object.fromEntries(formData);
-
     // Lol I forgot to wait for the promise to resolve
     postJob(data).then(resetState);
   };
@@ -134,11 +136,11 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
                 label="Experience"
                 name="experience-min"
                 placeholder="Minimum"
-                type="number"
+                type="text"
               />
               <TextField
                 name="experience-max"
-                type="number"
+                type="text"
                 placeholder="Maximum"
               />
             </TwoColumns>
@@ -147,18 +149,14 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
                 label="Salary"
                 name="salary-min"
                 placeholder="Minimum"
-                type="number"
+                type="text"
               />
-              <TextField
-                name="salary-max"
-                type="number"
-                placeholder="Maximum"
-              />
+              <TextField name="salary-max" type="text" placeholder="Maximum" />
             </TwoColumns>
             <TextField
               label="Total employee"
               name="totalEmployee"
-              type="number"
+              type="text"
               placeholder="ex. 100"
             />
             <RadioInput
@@ -176,7 +174,11 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
               ]}
             />
             <FormFooter>
-              <Button onClick={handleStepSubmit} className="float-right">
+              <Button
+                disabled={disabled}
+                onClick={handleStepSubmit}
+                className="float-right"
+              >
                 Save
               </Button>
             </FormFooter>

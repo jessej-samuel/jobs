@@ -2,10 +2,11 @@ import { FC } from "react";
 
 type SubHeaderProps = {
   children: React.ReactNode;
+  className?: string;
 };
 
-const SubHeader: FC<SubHeaderProps> = ({ children }) => {
-  return <h3 className="text-base font-normal">{children}</h3>;
+const SubHeader: FC<SubHeaderProps> = ({ children, className = "" }) => {
+  return <h3 className={`text-base font-normal ${className}`}>{children}</h3>;
 };
 
 export default SubHeader;
