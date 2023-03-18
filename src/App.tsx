@@ -16,10 +16,8 @@ function App() {
   // Fetch jobs from API
   useEffect(() => {
     let data: Job[] = [];
-    console.log("Fetching jobs");
     jobsApi.get("/jobs").then((res) => {
       data = res.data;
-      console.log("Fetched jobs", data);
       setJobs(data);
     });
   }, [formOpen]);

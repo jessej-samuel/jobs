@@ -14,7 +14,7 @@ const JobList: FC<JobListProps> = ({ jobs }) => {
       </Text>
       <div className="flex gap-6 flex-wrap z-0">
         {jobs.map((job) => {
-          return <JobCard job={job} />;
+          return <JobCard job={job} key={job.id} />;
         })}
       </div>
     </section>
