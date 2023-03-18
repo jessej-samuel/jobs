@@ -1,7 +1,6 @@
 import { FC } from "react";
 import Button from "../utils/Button";
-import Header from "../utils/Header";
-import SubHeader from "../utils/SubHeader";
+import Text from "../utils/Text";
 import TwoColumns from "../utils/TwoColumns";
 import NetflixLogo from "../../../assets/netflix.jfif";
 import CardHeader from "./Header";
@@ -38,25 +37,27 @@ const JobCard: FC<{ job: Job }> = ({ job }) => {
       </div>
       <div className="flex flex-col gap-6">
         <CardHeader>
-          <Header>{job.title}</Header>
-          <SubHeader>{`${job.company} - ${job.industry}`}</SubHeader>
-          <SubHeader className="text-[#646464]">{`${job.location} (${job.remoteType})`}</SubHeader>
+          <Text weight="normal" size="xl">
+            {job.title}
+          </Text>
+          <Text>{`${job.company} - ${job.industry}`}</Text>
+          <Text className="text-[#646464]">{`${job.location} (${job.remoteType})`}</Text>
         </CardHeader>
         <CardContent>
-          <SubHeader>{"Part-Time (9.00 am - 5.00 pm IST)"}</SubHeader>
-          <SubHeader>
+          <Text>{"Part-Time (9.00 am - 5.00 pm IST)"}</Text>
+          <Text>
             {job["experience-min"] || job["experience-max"]
               ? `Experience: (${job["experience-min"]} - ${job["experience-max"]} years)`
               : ""}
-          </SubHeader>
-          <SubHeader>
+          </Text>
+          <Text>
             {job["salary-min"] || job["salary-max"]
               ? `INR (₹) ${job["salary-min"]} - ${job["salary-max"]} / Month`
               : ``}
-          </SubHeader>
-          <SubHeader>
+          </Text>
+          <Text>
             {job.totalEmployee ? `${job.totalEmployee} employees` : ""}
-          </SubHeader>
+          </Text>
         </CardContent>
         <CardFooter>
           <TwoColumns>

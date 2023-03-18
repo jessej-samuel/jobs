@@ -1,7 +1,6 @@
 import { FC, MutableRefObject, useRef, useState } from "react";
 import jobsApi from "../api/PostJob";
 import Button from "./views/utils/Button";
-import Header from "./views/utils/Header";
 import RadioInput from "./views/Form/RadioInput";
 import TextField from "./views/Form/TextField";
 import ModalContainer from "./views/Modal/ModalContainer";
@@ -13,6 +12,7 @@ import TwoColumns from "./views/utils/TwoColumns";
 import StepContainer from "./views/utils/StepContainer";
 import FormManager from "./views/Form/FormManager";
 import Error from "./views/Form/Error";
+import Text from "./views/utils/Text";
 
 type JobFormPopupProps = {
   visible: boolean;
@@ -81,7 +81,9 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
         <FormManager onSubmit={handleFormSubmit} formRef={formRef}>
           <StepContainer currentStep={currentStep} forStep={1}>
             <FormHeader>
-              <Header>Create a job</Header>
+              <Text weight="normal" size="xl" component="h2">
+                Create a job
+              </Text>
               <StepCount count={1} />
             </FormHeader>
             <TextField
@@ -128,7 +130,9 @@ const JobFormPopup: FC<JobFormPopupProps> = ({ visible, onClose }) => {
           </StepContainer>
           <StepContainer currentStep={currentStep} forStep={2}>
             <FormHeader>
-              <Header>Create a job</Header>
+              <Text weight="normal" size="xl" component="h2">
+                Create a job
+              </Text>
               <StepCount count={2} />
             </FormHeader>
             <TwoColumns>
